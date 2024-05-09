@@ -11,7 +11,8 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import app from "../firebase/firebase.config";
+import { app } from "../firebase/firebase.config";
+
 
 // Social Auth Provider
 const googleProvider = new GoogleAuthProvider();
