@@ -105,7 +105,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-gray-100 px-4  mb-10 shadow mt-2">
+    <div className="navbar bg-[#E6E7D4] px-4  mb-10 shadow mt-2">
       <div className="navbar-start">
         <div className="dropdown dropdown-bottom z-10 ">
           <div
@@ -135,9 +135,11 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-          <a className="text-xl md:text-3xl font-bold font-lato text-[#1E677C]">
+         <Link to='/'>
+         <a className="text-xl md:text-3xl font-bold font-lato text-[#1E677C]">
             Awesome<span className="text-[#C57F23]">Blogs</span>
           </a>
+         </Link>
         
       </div>
       <div className="navbar-center hidden lg:flex">
