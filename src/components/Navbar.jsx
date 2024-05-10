@@ -154,7 +154,7 @@ const Navbar = () => {
               tabIndex={0}
               role="button"
               className="btn btn-ghost btn-circle avatar"
-              data-tip={user.displayName}
+             title={user.displayName}
             >
               <div id="loginBtn" className="w-10 rounded-full">
                 <img
@@ -167,7 +167,7 @@ const Navbar = () => {
                 onClick={logOut}
                 className="hidden md:btn md:btn-sm md:bg-[#1E677C] md:text-white"
               >
-                Logout
+                SignUp
               </button>
             </Link>
           </div>

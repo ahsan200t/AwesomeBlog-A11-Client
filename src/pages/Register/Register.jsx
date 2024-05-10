@@ -112,6 +112,7 @@ const Register = () => {
                 </label>
                 <input
                   placeholder="Enter Your Password"
+                  type="password"
                   className="input input-bordered border-[#E6E7D4]"
                   {...register("password", { required: true })}
                 />
