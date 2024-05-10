@@ -38,7 +38,7 @@ const Navbar = () => {
       {user && (
         <li>
           <NavLink
-            to="/add page"
+            to="/add blogs"
             className={({ isActive, isPending }) =>
               isPending
                 ? "pending"
@@ -55,7 +55,7 @@ const Navbar = () => {
       {user && (
         <li>
           <NavLink
-            to="/my list"
+            to="/featured"
             className={({ isActive, isPending }) =>
               isPending
                 ? "pending"
@@ -71,7 +71,7 @@ const Navbar = () => {
       {user && (
         <li>
           <NavLink
-            to="/my list"
+            to="/wish"
             className={({ isActive, isPending }) =>
               isPending
                 ? "pending"
@@ -165,7 +165,7 @@ const Navbar = () => {
             <Link to="/">
               <button
                 onClick={logOut}
-                className="hidden md:btn md:btn-sm md:bg-emerald-700 md:text-white"
+                className="hidden md:btn md:btn-sm md:bg-[#1E677C] md:text-white"
               >
                 Logout
               </button>
