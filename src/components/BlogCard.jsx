@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 /* eslint-disable react/prop-types */
 const BlogCard = ({blog}) => {
     const {photo,title,description,category,}=blog;
@@ -20,19 +22,25 @@ const BlogCard = ({blog}) => {
               {description}
             </p>
           </div>
-         <div className="flex gap-4">
+         <div>
+         <Link to='/details'>
          <button
             type="button"
-            className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md dark:bg-violet-600 dark:text-gray-50"
+            className="p-3 font-semibold rounded-md mr-8 btn-wide mb-4
+            bg-[#1E677C] text-white dark:bg-violet-600 dark:text-gray-50"
           >
             Details
           </button>
+         </Link>
+         <Link to='/wish'>
          <button
             type="button"
-            className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md dark:bg-violet-600 dark:text-gray-50"
+            className="p-3 font-semibold rounded-md bg-[#1E677C] text-white btn-wide
+            dark:bg-violet-600 dark:text-gray-50"
           >
             WishList
           </button>
+         </Link>
          </div>
         </div>
       </div>

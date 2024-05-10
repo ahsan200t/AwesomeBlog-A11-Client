@@ -8,6 +8,7 @@ import FeaturedBlogs from "../pages/FeaturedBlogs/FeaturedBlogs";
 import WishList from "../pages/WishList/WishList";
 import AddBlogs from "../pages/AddBlogs/AddBlogs";
 import ErrorElement from "../components/ErrorElement";
+import Details from "../pages/Details/Details";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
         path: "/add blogs",
         element: <AddBlogs></AddBlogs>,
       },
+      {
+        path:'/details',
+        element: <Details></Details>
+      }
     ],
   },
 ]);
