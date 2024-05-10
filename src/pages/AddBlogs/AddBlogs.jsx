@@ -57,7 +57,7 @@ const AddBlogs = () => {
         </h1>
       <form onSubmit={handleAddBlog}>
       <div className="mr-4">
-      <input defaultValue={user?.metadata?.creationTime} type="datetime" name="time" className="w-1/2 p-2 rounded-md text-center text-[#C57F23]" />
+      <input defaultValue={user?.metadata?.lastSignInTime} type="datetime" name="time" className="w-1/2 p-2 rounded-md text-center text-[#C57F23]" />
       </div>
         {/* title Name and photo Name */}
         <div className="md:flex">

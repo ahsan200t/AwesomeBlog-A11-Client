@@ -27,9 +27,15 @@ const Register = () => {
       );
       return;
     }
-    if (!/[a-z]/.test(password)) {
+    if (!/[@#$&*]/.test(password)) {
       setRegisterError(
-        "Password should have at least one lowercase characters"
+        "Password should have at least one Special characters"
+      );
+      return;
+    }
+    if (!/[0-9]/.test(password)) {
+      setRegisterError(
+        "Password should have at least one Number Like [0-9]"
       );
       return;
     }

@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import { useForm } from "react-hook-form";
+import SocialLogin from "./SocialLogin";
 
 const Login = () => {
   const { signInUser, setUser } = useContext(AuthContext);
@@ -36,6 +37,7 @@ const Login = () => {
 		<p className="text-sm dark:text-gray-600 font-lato">Sign in to access your account</p>
 	</div>
           <div className="card shrink-0 w-full max-w-sm">
+            <SocialLogin></SocialLogin>
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="form-control">
                 <label className="label">

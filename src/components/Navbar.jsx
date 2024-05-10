@@ -168,7 +168,7 @@ const Navbar = () => {
                 onClick={logOut}
                 className="hidden md:btn md:btn-sm md:bg-[#1E677C] md:text-white"
               >
-                SignUp
+                Sign Out
               </button>
             </Link>
           </div>
