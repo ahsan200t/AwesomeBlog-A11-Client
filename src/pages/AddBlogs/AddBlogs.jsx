@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const AddBlogs = () => {
      
@@ -15,9 +16,9 @@ const AddBlogs = () => {
       const longdescription=form.longdescription.value;
       const email = form.email.value;
       const user = form.user.value;
-      
+      const time=form.time.value;
   
-      const newSpot = {
+      const newBlog = {
         title,
         photo,
         category,
@@ -25,8 +26,29 @@ const AddBlogs = () => {
         longdescription,
         email,
         user,
+        time
        
       };
+      fetch("http://localhost:5000/blogs", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newBlog),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Successfully Added",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+          form.reset();
+        }
+      });
     }
   return (
     <div className="bg-[#E6E7D4] border-emerald-700 p-4 m-4 md:p-24 rounded-3xl">
@@ -34,6 +56,9 @@ const AddBlogs = () => {
           Add New Blog
         </h1>
       <form onSubmit={handleAddBlog}>
+      <div className="mr-4">
+      <input defaultValue={user?.metadata?.creationTime} type="datetime" name="time" className="w-1/2 p-2 rounded-md text-center text-[#C57F23]" />
+      </div>
         {/* title Name and photo Name */}
         <div className="md:flex">
             
