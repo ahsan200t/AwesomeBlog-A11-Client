@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../provider/AuthProvider";
 
 /* eslint-disable react/prop-types */
 const BlogCard = ({blog}) => {
+  const {user}=useContext(AuthContext)
     const {photo,title,description,category,_id}=blog;
     const handleWishList=()=>{
         const photo=blog.photo;
@@ -10,9 +13,10 @@ const BlogCard = ({blog}) => {
         const description=blog.description;
         const category=blog.category;
         const id=blog._id;
+        const email=user?.email;
 
         const listOfWish={
-          photo,title,description,category,id
+          photo,title,description,category,id,email
         }
 
         fetch("http://localhost:5000/wish", {

@@ -1,6 +1,6 @@
 import toast, { Toaster } from 'react-hot-toast';
 import { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
 import CommentsCard from "../../components/CommentsCard";
@@ -8,7 +8,7 @@ import CommentsCard from "../../components/CommentsCard";
 const Details = () => {
   const { user } = useContext(AuthContext);
   const details = useLoaderData();
-  const { photo, title, description, longdescription,email } = details;
+  const { photo, title, description, longdescription, _id } = details;
 
   const handleComment = (e) => {
     e.preventDefault();
@@ -66,6 +66,13 @@ const Details = () => {
             {longdescription}
           </p>
         </div>
+       <Link to={`/update/${_id}`}>
+       {user?.email===details.email &&(
+          <div className='text-right'>
+          <button className='btn bg-[#1E677E] text-white mt-4 '>Update</button>
+        </div>
+        )}
+       </Link>
       </div>
       {/* Comment section Form */}
       <section className="p-6 w-full  bg-white rounded-md shadow-md flex-1 md:min-h-[350px]">
