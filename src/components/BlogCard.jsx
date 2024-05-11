@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
 const BlogCard = ({blog}) => {
-    const {photo,title,description,category,}=blog;
+    const {photo,title,description,category,_id}=blog;
     return (
         <div>
         <div className="max-w-xs rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800">
@@ -23,7 +23,7 @@ const BlogCard = ({blog}) => {
             </p>
           </div>
          <div>
-         <Link to='/details'>
+         <Link to={`/details/${_id}`}>
          <button
             type="button"
             className="p-3 font-semibold rounded-md mr-8 btn-wide mb-4
