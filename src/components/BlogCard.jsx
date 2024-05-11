@@ -1,8 +1,41 @@
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 /* eslint-disable react/prop-types */
 const BlogCard = ({blog}) => {
     const {photo,title,description,category,_id}=blog;
+    const handleWishList=()=>{
+        const photo=blog.photo;
+        const title=blog.title;
+        const description=blog.description;
+        const category=blog.category;
+        const id=blog._id;
+
+        const listOfWish={
+          photo,title,description,category,id
+        }
+
+        fetch("http://localhost:5000/wish", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(listOfWish),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.insertedId) {
+              Swal.fire({
+                title: "Success!",
+                text: "Blog Successfully Added to WishList",
+                icon: "success",
+                confirmButtonText: "Ok",
+              });
+              
+            }
+          });
+    }
     return (
         <div>
         <div className="max-w-xs rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800">
@@ -32,15 +65,16 @@ const BlogCard = ({blog}) => {
             Details
           </button>
          </Link>
-         <Link to='/wish'>
+         
          <button
+         onClick={handleWishList}
             type="button"
             className="p-3 font-semibold rounded-md bg-[#1E677C] text-white btn-wide
             dark:bg-violet-600 dark:text-gray-50"
           >
             WishList
           </button>
-         </Link>
+         
          </div>
         </div>
       </div>

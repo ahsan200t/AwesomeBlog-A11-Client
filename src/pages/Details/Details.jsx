@@ -1,23 +1,28 @@
+import toast, { Toaster } from 'react-hot-toast';
 import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
+import CommentsCard from "../../components/CommentsCard";
 
 const Details = () => {
   const { user } = useContext(AuthContext);
   const details = useLoaderData();
-  const { photo, title, description, longdescription } = details;
+  const { photo, title, description, longdescription,email } = details;
 
-  const handleComment=e=>{
+  const handleComment = (e) => {
     e.preventDefault();
-    const form=e.target;
-    const comment=form.comment.value;
-    const photo=form.photo.value;
-    const email=form.email.value;
+    if (user?.email === details.email) return toast.error("Action Not Permitted")
+    const form = e.target;
+    const comment = form.comment.value;
+    const photo = form.photo.value;
+    const email = form.email.value;
 
-    const commentData={
-        comment,photo,email
-    }
+    const commentData = {
+      comment,
+      photo,
+      email,
+    };
 
     fetch("http://localhost:5000/comments", {
       method: "POST",
@@ -32,14 +37,14 @@ const Details = () => {
         if (data.insertedId) {
           Swal.fire({
             title: "Success!",
-            text: "Successfully Added",
+            text: "Comment Successfully Added",
             icon: "success",
             confirmButtonText: "Ok",
           });
           form.reset();
         }
       });
-  }
+  };
 
   return (
     <div className="flex flex-col md:flex-row justify-around gap-5  items-center min-h-[calc(100vh-306px)] md:max-w-screen-xl mx-auto ">
@@ -78,41 +83,37 @@ const Details = () => {
             <p className="font-semibold">{user?.displayName}</p>
           </div>
 
-             
-          <div className='grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2'>
+          <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
-              <label className='text-gray-700 ' htmlFor='photo'>
+              <label className="text-gray-700 " htmlFor="photo">
                 Image URL
               </label>
               <input
-                id='photo'
-                type='text'
-                name='photo'
+                id="photo"
+                type="text"
+                name="photo"
                 defaultValue={user?.photoURL}
                 disabled
-                className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md   focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md   focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             </div>
 
             <div>
-              <label className='text-gray-700 ' htmlFor='emailAddress'>
+              <label className="text-gray-700 " htmlFor="emailAddress">
                 Email Address
               </label>
               <input
-                id='emailAddress'
-                type='email'
-                name='email'
+                id="emailAddress"
+                type="email"
+                name="email"
                 defaultValue={user?.email}
                 disabled
-                className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md   focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md   focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             </div>
-            </div>
+          </div>
 
-
-
-
-          <div className='mt-4'>
+          <div className="mt-4">
             <label className="text-gray-700 " htmlFor="comment">
               Comment
             </label>
@@ -135,10 +136,11 @@ const Details = () => {
             </button>
           </div>
         </form>
-        <div>
-          <img src="" alt="" />
+        <div className="mt-8 border bg-[#E6E7D4] px-4 py-2">
+          <CommentsCard></CommentsCard>
         </div>
       </section>
+      <Toaster />
     </div>
   );
 };
