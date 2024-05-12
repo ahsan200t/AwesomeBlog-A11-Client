@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
+import toast, { Toaster } from "react-hot-toast";
+import { motion } from "framer-motion";
 
 /* eslint-disable react/prop-types */
 const RecentBlogCard = ({blog}) => {
@@ -30,7 +32,7 @@ const RecentBlogCard = ({blog}) => {
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
-            if (data.insertedId) {
+            if (data.insertedId && user) {
               Swal.fire({
                 title: "Success!",
                 text: "Blog Successfully Added to WishList",
@@ -38,13 +40,16 @@ const RecentBlogCard = ({blog}) => {
                 confirmButtonText: "Ok",
               });
               
+            }else{
+              return toast.error("You Can't Add Data Before SignIn")
             }
           });
         }
 
     return (
-        <div>
-              <div className="max-w-xs rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800">
+        <motion.div whileHover={{ scale: [null, 1.05, 1.05] }}
+        transition={{ duration: 0.4 }}>
+        <div className="max-w-xs rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800">
         <img
           src={photo}
           className="object-cover object-center w-full rounded-t-md h-72 dark:bg-gray-500"
@@ -85,7 +90,8 @@ const RecentBlogCard = ({blog}) => {
          </div>
         </div>
       </div> 
-        </div>
+      <Toaster/>
+        </motion.div>
     );
 };
 
