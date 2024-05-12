@@ -68,7 +68,7 @@ const Details = () => {
           </p>
         </div>
        <Link to={`/update/${_id}`}>
-       {user?.email===details.email &&(
+       {user?.email===details.email || user &&(
           <div className='text-right'>
           <button className='btn bg-[#1E677E] text-white mt-4 '>Update</button>
         </div>

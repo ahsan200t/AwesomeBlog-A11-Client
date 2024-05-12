@@ -12,7 +12,6 @@ import Details from "../pages/Details/Details";
 import UpdateBlog from "../pages/UpdateBlog/UpdateBlog";
 import PrivetRoute from "../pages/PrivetRoute/PrivetRoute";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,7 +21,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/blogs")
+        loader: () => fetch("http://localhost:5000/blogs"),
       },
       {
         path: "/all blogs",
@@ -50,15 +49,20 @@ const router = createBrowserRouter([
         element: <AddBlogs></AddBlogs>,
       },
       {
-        path:'/details/:id',
-        element: <PrivetRoute><Details></Details></PrivetRoute>,
-        loader: ({params})=> fetch(`http://localhost:5000/blogs/${params.id}`)
+        path: "/details/:id",
+        element: 
+        <PrivetRoute>
+          <Details></Details>
+        </PrivetRoute>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/blogs/${params.id}`),
       },
       {
-        path:'/update/:id',
-        element:<UpdateBlog></UpdateBlog>,
-        loader: ({params}) => fetch(`http://localhost:5000/blogs/${params.id}`)
-      }
+        path: "/update/:id",
+        element: <UpdateBlog></UpdateBlog>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/blogs/${params.id}`),
+      },
     ],
   },
 ]);
