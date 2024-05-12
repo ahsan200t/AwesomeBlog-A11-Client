@@ -10,6 +10,8 @@ import AddBlogs from "../pages/AddBlogs/AddBlogs";
 import ErrorElement from "../components/ErrorElement";
 import Details from "../pages/Details/Details";
 import UpdateBlog from "../pages/UpdateBlog/UpdateBlog";
+import PrivetRoute from "../pages/PrivetRoute/PrivetRoute";
+
 
 const router = createBrowserRouter([
   {
@@ -49,7 +51,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/details/:id',
-        element: <Details></Details>,
+        element: <PrivetRoute><Details></Details></PrivetRoute>,
         loader: ({params})=> fetch(`http://localhost:5000/blogs/${params.id}`)
       },
       {
