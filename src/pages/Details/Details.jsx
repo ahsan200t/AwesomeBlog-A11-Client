@@ -50,9 +50,10 @@ const Details = () => {
     <div className="flex flex-col md:flex-row justify-around gap-5  items-center min-h-[calc(100vh-306px)] md:max-w-screen-xl mx-auto ">
       {/* Blog Details */}
       <div className="flex-1  px-4 py-7 bg-white rounded-md shadow-md md:min-h-[350px]">
+      <h1 className='mb-6 text-center font-serif font bold text-3xl text-[#C57F23]'>Details</h1>
         <div className="flex items-center justify-between">
-          <span className="text-sm font-light text-gray-800 ">
-            <img src={photo} alt="" />
+          <span>
+            <img className='rounded-t-md' src={photo} alt="" />
           </span>
         </div>
 
@@ -75,7 +76,7 @@ const Details = () => {
        </Link>
       </div>
       {/* Comment section Form */}
-      <section className="p-6 w-full  bg-white rounded-md shadow-md flex-1 md:min-h-[350px]">
+      <section className="p-6 w-full  bg-gray-200 rounded-md shadow-md flex-1 md:min-h-[350px]">
         <h2 className="text-3xl font-lato font-bold text-gray-700 capitalize mb-10 text-center ">
           Please Share Your Idea:
         </h2>

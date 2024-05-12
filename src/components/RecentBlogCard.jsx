@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 /* eslint-disable react/prop-types */
-const BlogCard = ({blog}) => {
-  const {user}=useContext(AuthContext)
+const RecentBlogCard = ({blog}) => {
+    const {user}=useContext(AuthContext)
     const {photo,title,description,longdescription,category,_id}=blog;
+
     const handleWishList=()=>{
         const photo=blog.photo;
         const title=blog.title;
@@ -39,10 +40,11 @@ const BlogCard = ({blog}) => {
               
             }
           });
-    }
+        }
+
     return (
         <div>
-        <div className="max-w-xs rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800">
+              <div className="max-w-xs rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800">
         <img
           src={photo}
           className="object-cover object-center w-full rounded-t-md h-72 dark:bg-gray-500"
@@ -82,9 +84,9 @@ const BlogCard = ({blog}) => {
          
          </div>
         </div>
-      </div>
+      </div> 
         </div>
     );
 };
 
-export default BlogCard;
+export default RecentBlogCard;

@@ -77,8 +77,8 @@ const AddBlogs = () => {
             >
                <option>Select Your Category</option>
               <option>Travel</option>
-              <option>Thailand</option>
-              <option>Indonesia</option> 
+              <option>Remote Work</option>
+              <option>Health</option> 
             </select>
           </div>
 
