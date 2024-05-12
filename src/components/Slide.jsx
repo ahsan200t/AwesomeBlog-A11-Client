@@ -11,7 +11,7 @@ const slide = ({image,text}) => {
       >
       <div className='flex items-center justify-center w-full h-full bg-gray-900/70'>
         <div className='text-center'>
-          <h1 className='text-3xl font-semibold text-white lg:text-4xl'>
+          <h1 className='text-xl font-semibold text-gray-400 lg:text-3xl w-1/2 mx-auto'>
             {text}
           </h1>
           <br />

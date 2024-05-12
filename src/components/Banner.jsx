@@ -39,13 +39,20 @@ export default function Banner() {
         <SwiperSlide>
         <Slide
         image={banner1}
+        text='Stay up-to-date with our latest articles covering a wide range of topics.'
         ></Slide>
         </SwiperSlide>
         <SwiperSlide>
-        <Slide image={banner2}></Slide>
+        <Slide 
+        image={banner2}
+        text='From travel adventures to remote work tips and holistic health insights'
+        ></Slide>
         </SwiperSlide>
         <SwiperSlide>
-        <Slide image={banner3}></Slide>
+        <Slide 
+        image={banner3}
+        text='Explore captivating content that inspires, educates, and entertains.'
+        ></Slide>
         </SwiperSlide>
         
       </Swiper>
