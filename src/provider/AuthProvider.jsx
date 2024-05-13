@@ -12,6 +12,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
+import axios from "axios";
 
 
 // Social Auth Provider
@@ -61,8 +62,11 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  const logOut = () => {
-    setUser(false)
+  const logOut = async() => {
+    setLoading(true)
+   const {data}= await axios("http://localhost:5000/logout", {withCredentials:true})
+   console.log(data)
+   setUser(false)
     return signOut(auth);
    
   };
