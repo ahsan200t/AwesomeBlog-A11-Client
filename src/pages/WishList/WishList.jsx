@@ -18,6 +18,7 @@ const WishList = () => {
       getWishData();
     }, [user]);
 
+
     if (blogs.length === 0) return <p className="text-center md:my-40 text-gray-400">Opps!!! <br /> You did not Add Any data in Wishlist</p>
 
   return (

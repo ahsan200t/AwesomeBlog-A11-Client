@@ -3,6 +3,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import { useForm } from "react-hook-form";
 import SocialLogin from "./SocialLogin";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const { signInUser, setUser } = useContext(AuthContext);
@@ -10,23 +12,24 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
     const { email, password } = data;
-    signInUser(email, password)
-      .then((result) => {
-        if (result.user) {
-          navigate(location?.state || "/");
-          setUser(true);
-        }
-      })
-      .catch(() => {
-        setLoginError("Password did Not Match");
-      });
+   const result= signInUser(email, password)
+    const { cookieData } = await axios.post(
+      "http://localhost:5000/jwt",
+      { email: result?.user?.email },
+      { withCredentials: true },  
+    );
+    console.log(cookieData)
+    toast.success("Successfully Login");
+    navigate(location?.state || "/");
+    
   };
   return (
     <div>
@@ -92,36 +95,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-
-      {/* <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 dark:bg-gray-50 dark:text-gray-800 mx-auto border border-[#1E677C] shadow bg-[#E6E7D4]">
-	<div className="mb-8 text-center">
-		<h1 className="my-3 text-4xl font-black font-lato">Sign in</h1>
-		<p className="text-sm dark:text-gray-600 font-lato">Sign in to access your account</p>
-	</div>
-	<form noValidate="" action="" className="space-y-12">
-		<div className="space-y-4">
-			<div>
-				<label htmlFor="email" className="block mb-2 text-sm font-lato">Email address</label>
-				<input type="email" name="email" id="email" placeholder="Enter Your Email" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800" />
-			</div>
-			<div>
-				<div className="flex justify-between mb-2">
-					<label htmlFor="password" className="text-sm font-lato">Password</label>
-					<a className="text-xs hover:underline dark:text-gray-600">Forgot password?</a>
-				</div>
-				<input type="password" name="password" id="password" placeholder="Enter Your Password" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800" />
-			</div>
-		</div>
-		<div className="space-y-2">
-			<div>
-				<button type="button" className="w-full px-8 py-3 font-semibold rounded-md bg-[#1E677C] text-white font-lato">Sign in</button>
-			</div>
-			<p className="px-6 text-sm text-center dark:text-gray-600">Don't have an account yet?
-				<Link to='/register' className="hover:underline text-[#1E677C] dark:text-violet-600 font-bold font-lato">Sign up</Link>.
-			</p>
-		</div>
-	</form>
-   </div> */}
+      <Toaster/>
     </div>
   );
 };

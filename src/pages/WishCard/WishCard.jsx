@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { MdDeleteForever } from "react-icons/md";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import 'react-photo-view/dist/react-photo-view.css';
@@ -67,6 +68,7 @@ const WishCard = ({ wish }) => {
           </div>
         </div>
       </div>
+      <Toaster/>
     </div>
   );
 };

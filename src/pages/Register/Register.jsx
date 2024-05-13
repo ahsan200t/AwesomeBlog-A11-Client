@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const Register = () => {
      
@@ -44,6 +45,7 @@ const Register = () => {
       .then(() => {
         updateUserProfile(fullName, photoURL,email)
         .then(()=>{
+          toast.success("Successfully Registered")
           navigate(location?.state || '/')
          setUser(true)
         })

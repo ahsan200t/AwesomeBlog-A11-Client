@@ -33,7 +33,7 @@ const BlogCard = ({blog}) => {
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
-            if (data.insertedId && user) {
+            if (data.insertedId && user ){
               Swal.fire({
                 title: "Success!",
                 text: "Blog Successfully Added to WishList",
