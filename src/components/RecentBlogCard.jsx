@@ -4,6 +4,8 @@ import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
 import toast, { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import 'react-photo-view/dist/react-photo-view.css';
 
 /* eslint-disable react/prop-types */
 const RecentBlogCard = ({blog}) => {
@@ -50,10 +52,14 @@ const RecentBlogCard = ({blog}) => {
         <motion.div whileHover={{ scale: [null, 1.05, 1.05] }}
         transition={{ duration: 0.4 }}>
         <div className="max-w-xs rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800">
-        <img
+       <PhotoProvider>
+       <PhotoView src={photo}>
+       <img
           src={photo}
           className="object-cover object-center w-full rounded-t-md h-72 dark:bg-gray-500"
         />
+       </PhotoView>
+       </PhotoProvider>
         <div className="flex flex-col justify-between p-6 space-y-8">
             <div>
                 <p className="text-xl font-semibold">{category}</p>

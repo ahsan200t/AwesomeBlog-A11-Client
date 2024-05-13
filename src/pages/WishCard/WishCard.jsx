@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import 'react-photo-view/dist/react-photo-view.css';
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 const WishCard = ({ wish }) => {
@@ -38,7 +40,14 @@ const WishCard = ({ wish }) => {
     <div>
       <div className="card glass">
         <figure>
-          <img src={photo} alt="car!" />
+        <PhotoProvider>
+       <PhotoView src={photo}>
+       <img
+          src={photo}
+          className="object-cover object-center w-full rounded-t-md h-72 dark:bg-gray-500"
+        />
+       </PhotoView>
+       </PhotoProvider>
         </figure>
         <div className="card-body">
           <h2 className="card-title font-bold text-[#1E677C]">{category}</h2>
