@@ -13,7 +13,7 @@ const SocialLogin = () => {
     try {
       const result = await googleLogIn();
       const { data } = await axios.post(
-        "https://awesome-blog-steel.vercel.app/jwt",
+        "http://localhost:5000/jwt",
         { email: result?.user?.email },
         { withCredentials: true },  
       );

@@ -22,7 +22,7 @@ const UpdateBlog = () => {
       title,
       longdescription,
     };
-    fetch(`https://awesome-blog-steel.vercel.app/blog/${_id}`, {
+    fetch(`http://localhost:5000/blog/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

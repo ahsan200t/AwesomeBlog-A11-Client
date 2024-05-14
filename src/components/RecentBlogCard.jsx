@@ -24,7 +24,7 @@ const RecentBlogCard = ({blog}) => {
           photo,title,description,category,id,email,longdescription
         }
 
-        fetch("https://awesome-blog-steel.vercel.app/wish", {
+        fetch("http://localhost:5000/wish", {
           method: "POST",
           headers: {
             "content-type": "application/json",
