@@ -7,9 +7,9 @@ import CommentsCard from "../../components/CommentsCard";
 
 const Details = () => {
   const { user } = useContext(AuthContext);
-  const details = useLoaderData();
-  const { photo, title, description, longdescription, _id } = details;
-
+  const details=useLoaderData()
+  
+  const { photo, title, description, longdescription, _id }=details;
   const handleComment = (e) => {
     e.preventDefault();
     if (user?.email === details.email) return toast.error("Action Not Permitted")
@@ -24,7 +24,7 @@ const Details = () => {
       email,
     };
 
-    fetch("http://localhost:5000/comments", {
+    fetch("https://awesome-blog-steel.vercel.app/comments", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -33,7 +33,7 @@ const Details = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        
         if (data.insertedId) {
           Swal.fire({
             title: "Success!",

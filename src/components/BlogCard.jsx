@@ -23,7 +23,7 @@ const BlogCard = ({blog}) => {
           photo,title,description,category,id,email,longdescription
         }
 
-        fetch("http://localhost:5000/wish", {
+        fetch("https://awesome-blog-steel.vercel.app/wish", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -32,7 +32,7 @@ const BlogCard = ({blog}) => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
+           
             if (data.insertedId && user ){
               Swal.fire({
                 title: "Success!",

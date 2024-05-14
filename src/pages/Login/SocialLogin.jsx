@@ -13,16 +13,16 @@ const SocialLogin = () => {
     try {
       const result = await googleLogIn();
       const { data } = await axios.post(
-        "http://localhost:5000/jwt",
+        "https://awesome-blog-steel.vercel.app/jwt",
         { email: result?.user?.email },
         { withCredentials: true },  
       );
-      console.log(data);
+      
       toast.success("Successfully Login");
       navigate(location.state || "/");
       
     } catch (err) {
-      console.log(err);
+    
       toast.error(err?.message);
     }
   };

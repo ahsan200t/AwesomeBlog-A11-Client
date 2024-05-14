@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
 import { MdDeleteForever } from "react-icons/md";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import 'react-photo-view/dist/react-photo-view.css';
@@ -9,7 +8,7 @@ import Swal from "sweetalert2";
 const WishCard = ({ wish }) => {
   const [myWishList, setMyWishList] = useState(null);
   const { photo, title, category, description, _id } = wish;
-  const handleDelete = async(_id) => {
+  const handleDelete = (_id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -20,7 +19,7 @@ const WishCard = ({ wish }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed)
-        fetch(`http://localhost:5000/wish/${_id}`, {
+        fetch(`https://awesome-blog-steel.vercel.app/wish/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -33,10 +32,13 @@ const WishCard = ({ wish }) => {
                 icon: "success",
               });
             }
+            const remaining = myWishList.filter((wish) => wish._id !== _id);
+            setMyWishList(remaining);
           });
       
     })
   };
+
   return (
     <div>
       <div className="card glass">
@@ -68,7 +70,7 @@ const WishCard = ({ wish }) => {
           </div>
         </div>
       </div>
-      <Toaster/>
+      
     </div>
   );
 };

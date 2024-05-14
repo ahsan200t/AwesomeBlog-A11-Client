@@ -3,33 +3,31 @@ import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
 
 const AddBlogs = () => {
-     
-    const { user } = useContext(AuthContext);
-    const handleAddBlog = (e) => {
-      e.preventDefault();
-      const form = e.target;
-  
-      const title = form.title.value;
-      const photo = form.photo.value;
-      const category = form.category.value;
-      const description = form.description.value;
-      const longdescription=form.longdescription.value;
-      const email = form.email.value;
-      const user = form.user.value;
-      const time=form.time.value;
-  
-      const newBlog = {
-        title,
-        photo,
-        category,
-        description,
-        longdescription,
-        email,
-        user,
-        time
-       
-      };
-      fetch("http://localhost:5000/blogs", {
+  const { user } = useContext(AuthContext);
+  const handleAddBlog = (e) => {
+    e.preventDefault();
+    const form = e.target;
+
+    const title = form.title.value;
+    const photo = form.photo.value;
+    const category = form.category.value;
+    const description = form.description.value;
+    const longdescription = form.longdescription.value;
+    const email = form.email.value;
+    const user = form.user.value;
+    const time = form.time.value;
+
+    const newBlog = {
+      title,
+      photo,
+      category,
+      description,
+      longdescription,
+      email,
+      user,
+      time,
+    };
+    fetch(`https://awesome-blog-steel.vercel.app/blogs`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -38,7 +36,6 @@ const AddBlogs = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.insertedId) {
           Swal.fire({
             title: "Success!",
@@ -49,24 +46,26 @@ const AddBlogs = () => {
           form.reset();
         }
       });
-    }
+  };
   return (
     <div className="bg-[#E6E7D4] border-emerald-700 p-4 m-4 md:p-24 rounded-3xl">
-        <h1 className="text-3xl font-extrabold text-center mb-8 font-serif">
-          Add New Blog
-        </h1>
+      <h1 className="text-3xl font-extrabold text-center mb-8 font-serif">
+        Add New Blog
+      </h1>
       <form onSubmit={handleAddBlog}>
-      <div className="mr-4">
-      <input defaultValue={user?.metadata?.lastSignInTime} type="datetime" name="time" className="w-1/2 p-2 rounded-md text-center text-[#C57F23]" />
-      </div>
+        <div className="mr-4">
+          <input
+            defaultValue={user?.metadata?.lastSignInTime}
+            type="datetime"
+            name="time"
+            className="w-1/2 p-2 rounded-md text-center text-[#C57F23]"
+          />
+        </div>
         {/* title Name and photo Name */}
         <div className="md:flex">
-            
-        <div className="form-control md:w-1/2 mr-4">
+          <div className="form-control md:w-1/2 mr-4">
             <label className="label">
-              <span className="label-text card-title font-serif">
-                Category
-              </span>
+              <span className="label-text card-title font-serif">Category</span>
             </label>
             <select
               type="text"
@@ -75,18 +74,16 @@ const AddBlogs = () => {
               required
               name="category"
             >
-               <option>Select Your Category</option>
-              <option>Travel</option>
-              <option>Remote Work</option>
-              <option>Health</option> 
+              <option>Select Your Category</option>
+              <option value='Travel'>Travel</option>
+              <option value='Remote Work'>Remote Work</option>
+              <option value='Health  '>Health</option>
             </select>
           </div>
 
           <div className="form-control w-full md:w-1/2">
             <label className="label">
-              <span className="label-text card-title font-serif">
-                Title
-              </span>
+              <span className="label-text card-title font-serif">Title</span>
             </label>
 
             <input
@@ -94,15 +91,16 @@ const AddBlogs = () => {
               className="input input-bordered border-emerald-700 w-full"
               required
               name="title"
-            >
-            </input>
+            ></input>
           </div>
         </div>
         {/* short and long Description */}
         <div className="md:flex">
           <div className="form-control md:w-1/2">
             <label className="label">
-              <span className="label-text card-title font-serif">Short Description</span>
+              <span className="label-text card-title font-serif">
+                Short Description
+              </span>
             </label>
             <input
               type="text"
@@ -162,7 +160,7 @@ const AddBlogs = () => {
         </div>
         {/* form Photo url row */}
         <div>
-        <div className="form-control w-full md:w-full">
+          <div className="form-control w-full md:w-full">
             <label className="label">
               <span className="label-text card-title font-serif">
                 Long Description

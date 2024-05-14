@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 
 const UpdateBlog = () => {
   const blogs = useLoaderData();
-  console.log(blogs)
+ 
   const { photo, title, description, longdescription, email, _id } = blogs;
 
   const handleUpdateBlog = (e) => {
@@ -22,7 +22,7 @@ const UpdateBlog = () => {
       title,
       longdescription,
     };
-    fetch(`http://localhost:5000/blog/${_id}`, {
+    fetch(`https://awesome-blog-steel.vercel.app/blog/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -31,7 +31,7 @@ const UpdateBlog = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        
         if (data.modifiedCount > 0) {
           Swal.fire({
             title: "Success!",

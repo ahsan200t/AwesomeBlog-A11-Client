@@ -3,11 +3,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import { useForm } from "react-hook-form";
 import SocialLogin from "./SocialLogin";
-import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
-  const { signInUser, setUser } = useContext(AuthContext);
+  const { signInUser,setUser } = useContext(AuthContext);
   const [loginError, setLoginError] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,15 +19,18 @@ const Login = () => {
   } = useForm();
   const onSubmit = async(data) => {
     const { email, password } = data;
-   const result= signInUser(email, password)
-    const { cookieData } = await axios.post(
-      "http://localhost:5000/jwt",
-      { email: result?.user?.email },
-      { withCredentials: true },  
-    );
-    console.log(cookieData)
-    toast.success("Successfully Login");
-    navigate(location?.state || "/");
+    signInUser(email, password)
+      .then((result) => {
+        if(result.user){
+          toast.success("Successfully Login");
+          navigate(location?.state || '/');
+          setUser(true)
+        }   
+      })
+      .catch(() => {
+        setLoginError("Password did Not Match");
+      });
+    
     
   };
   return (

@@ -104,7 +104,7 @@ const Navbar = () => {
       )}
     </>
   );
-  console.log(user)
+
   return (
     <div className="navbar bg-[#E6E7D4] px-4  mb-10 shadow mt-2">
       <div className="navbar-start">

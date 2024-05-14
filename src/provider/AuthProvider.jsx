@@ -64,7 +64,7 @@ const AuthProvider = ({ children }) => {
 
   const logOut = async() => {
     setLoading(true)
-   const {data}= await axios("http://localhost:5000/logout", {withCredentials:true})
+   const {data}= await axios("https://awesome-blog-steel.vercel.app/logout", {withCredentials:true})
    console.log(data)
    setUser(false)
     return signOut(auth);
