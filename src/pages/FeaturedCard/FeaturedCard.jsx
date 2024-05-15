@@ -1,3 +1,4 @@
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
@@ -19,8 +20,11 @@ const FeaturedCard = () => {
     const columns = [
         {
           name: "Serial",
-          selector: (row) => row.id,
+          cell: (row,index) => index+1,
+          selector: (row)=>row.cell,
           sortable: true,
+          
+          
           
         },
         {

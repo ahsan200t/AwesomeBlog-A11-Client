@@ -34,7 +34,7 @@ const SocialLogin = () => {
       </h1>
       <div
         onClick={() => handleGoogleLogin(googleLogIn)}
-        className="text-red-600"
+        className="text-red-600 hover:cursor-pointer"
       >
         <GoogleIcon></GoogleIcon>
       </div>

@@ -12,7 +12,7 @@ const WishList = () => {
       const getWishData = async () => {
         const { data } = await axios(
           `https://awesome-blog-steel.vercel.app/blogs/${user?.email}`,
-          {withCredentials:true}
+          
         );
         setBlogs(data);
       };

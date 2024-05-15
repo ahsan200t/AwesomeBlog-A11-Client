@@ -1,7 +1,16 @@
+import toast from "react-hot-toast";
 import newsLatter from "../assets/images/newsletter2.png";
 const NewsLatter = () => {
-    const handleSubscribe=()=>{
-        
+    const handleSubscribe=(e)=>{
+      e.preventDefault();
+      const form=e.target;
+      const email=form.email.value;
+      form.reset();
+      
+      if(email){ 
+        return toast.success("Thank You For Subscribing to Our Newsletter")
+      }
+       
     }
   return (
     <div className="text-center my-16 bg-pink-50 md:p-10 rounded-3xl">
@@ -11,10 +20,9 @@ const NewsLatter = () => {
         You Will Never Miss Our Recent Blog Post. Our NewsLetter is Once A Week
         Every Friday.
       </p>
-      <div>
-        <fieldset className="w-full space-y-1 dark:text-gray-800">
+      <form onSubmit={handleSubscribe}>
           <div className="flex justify-center flex-row-reverse mt-4">
-            <button onClick={handleSubscribe} className="flex bg-pink-500 items-center px-3 pointer-events-none sm:text-sm rounded-r-3xl dark:bg-gray-300 text-white font-bold">
+            <button className="flex bg-pink-500 items-center px-3 sm:text-sm rounded-r-3xl dark:bg-gray-300 text-white font-bold">
               Subscribe
             </button>
             <input
@@ -25,8 +33,8 @@ const NewsLatter = () => {
               className="flex border sm:text-sm rounded-l-md focus:ring-inset dark:border-gray-300 dark:text-gray-800 dark:bg-gray-100 focus:dark:ring-violet-600"
             />
           </div>
-        </fieldset>
-      </div>
+        
+      </form>
       <p className="mt-4">We Promise Not To Spam You</p>
     </div>
   );

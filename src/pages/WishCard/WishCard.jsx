@@ -64,8 +64,7 @@ const WishCard = ({ wish }) => {
               onClick={() => handleDelete(wish._id)}
               className="btn bg-transparent text-3xl text-red-700"
             >
-              {" "}
-              <MdDeleteForever />{" "}
+              <MdDeleteForever />
             </button>
           </div>
         </div>

@@ -1,8 +1,16 @@
-# React + Vite
+# AwesomeBlog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Website Link: 
+ 
+ 
+## Features:
 
-Currently, two official plugins are available:
+1. User-Friendly Interface.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2. Content Management System (CMS).
+
+3. Responsive Design.
+
+4. SEO Optimization.
+
+5. Engagement Tools.
