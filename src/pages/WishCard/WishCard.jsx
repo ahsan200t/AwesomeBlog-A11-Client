@@ -19,7 +19,7 @@ const WishCard = ({ wish }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed)
-        fetch(`http://localhost:5000/wish/${_id}`, {
+        fetch(`https://awesome-blog-steel.vercel.app/wish/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

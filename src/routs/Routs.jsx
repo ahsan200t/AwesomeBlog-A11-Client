@@ -21,12 +21,12 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/blogs"),
+        loader: () => fetch("https://awesome-blog-steel.vercel.app/blogs"),
       },
       {
         path: "/all blogs",
         element: <AllBlogs></AllBlogs>,
-        // loader: () => fetch("http://localhost:5000/blogs"),
+        // loader: () => fetch("https://awesome-blog-steel.vercel.app/blogs"),
       },
       {
         path: "/register",
@@ -55,13 +55,13 @@ const router = createBrowserRouter([
           <Details></Details>
         </PrivetRoute>,   
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/single-blogs/${params.id}`)
+          fetch(`https://awesome-blog-steel.vercel.app/single-blogs/${params.id}`)
       },
       {
         path: "/update/:id",
         element: <UpdateBlog></UpdateBlog>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/blog/${params.id}`),
+          fetch(`https://awesome-blog-steel.vercel.app/blog/${params.id}`),
       },
     ],
   },

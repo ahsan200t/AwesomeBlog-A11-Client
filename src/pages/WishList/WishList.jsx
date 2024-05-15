@@ -11,7 +11,8 @@ const WishList = () => {
     useEffect(() => {
       const getWishData = async () => {
         const { data } = await axios(
-          `http://localhost:5000/blogs/${user?.email}`
+          `https://awesome-blog-steel.vercel.app/blogs/${user?.email}`,
+          {withCredentials:true}
         );
         setBlogs(data);
       };

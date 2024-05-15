@@ -24,7 +24,7 @@ const Details = () => {
       email,
     };
 
-    fetch("http://localhost:5000/comments", {
+    fetch("https://awesome-blog-steel.vercel.app/comments", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -16,6 +16,7 @@ const AddBlogs = () => {
     const email = form.email.value;
     const user = form.user.value;
     const time = form.time.value;
+    const owner=form.owner.value
 
     const newBlog = {
       title,
@@ -26,8 +27,9 @@ const AddBlogs = () => {
       email,
       user,
       time,
+      owner
     };
-    fetch(`http://localhost:5000/blogs`, {
+    fetch(`https://awesome-blog-steel.vercel.app/blogs`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -158,6 +160,23 @@ const AddBlogs = () => {
             />
           </div>
         </div>
+        {/* blog owner Photo url row */}
+        <div>
+          <div className="form-control w-full md:w-full">
+            <label className="label">
+              <span className="label-text card-title font-serif">
+                Blog Owner Photo
+              </span>
+            </label>
+            <input
+              type="text"
+              placeholder="Blog Owner PhotoURL"
+              className="input input-bordered border-emerald-700 w-full"
+              required
+              defaultValue={user.photoURL}
+              name="owner"
+            />
+          </div>
         {/* form Photo url row */}
         <div>
           <div className="form-control w-full md:w-full">
@@ -173,6 +192,7 @@ const AddBlogs = () => {
               required
               name="longdescription"
             />
+          </div>
           </div>
         </div>
         <input

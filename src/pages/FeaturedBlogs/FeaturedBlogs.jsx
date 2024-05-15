@@ -1,9 +1,12 @@
+import FeaturedCard from "../FeaturedCard/FeaturedCard";
+
 const FeaturedBlogs = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+  
+  return (
+    <div>
+         <FeaturedCard></FeaturedCard>  
+    </div>
+  );
 };
 
 export default FeaturedBlogs;
