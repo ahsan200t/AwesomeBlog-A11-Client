@@ -2,29 +2,26 @@ import GoogleIcon from "@mui/icons-material/Google";
 import { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
-import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 const SocialLogin = () => {
   const { googleLogIn } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleGoogleLogin = async () => {
-    try {
-      const result = await googleLogIn();
-      const { data } = await axios.post(
-        "https://awesome-blog-steel.vercel.app/jwt",
-        { email: result?.user?.email },
-        { withCredentials: true },  
-      );
-      
-      toast.success("Successfully Login");
-      navigate(location.state || "/");
-      
-    } catch (err) {
-    
-      toast.error(err?.message);
-    }
+    googleLogIn().then((result) => {
+      const userInfo = {
+        email: result.user.email,
+        name: result.user.displayName,
+      };
+      axiosPublic.post("/users", userInfo).then((res) => {
+        console.log(res.data);
+        toast.success("Successfully Login");
+        navigate(location.state || "/");
+      });
+    });
   };
 
   return (

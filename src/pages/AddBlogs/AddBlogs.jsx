@@ -29,7 +29,7 @@ const AddBlogs = () => {
       time,
       owner
     };
-    fetch(`https://awesome-blog-steel.vercel.app/blogs`, {
+    fetch(`http://localhost:5000/blogs`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

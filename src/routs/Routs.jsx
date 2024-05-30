@@ -11,7 +11,10 @@ import ErrorElement from "../components/ErrorElement";
 import Details from "../pages/Details/Details";
 import UpdateBlog from "../pages/UpdateBlog/UpdateBlog";
 import PrivetRoute from "../pages/PrivetRoute/PrivetRoute";
-
+import Dashboard from "../layouts/Dashboard";
+import MyDashboard from "../pages/Dashboard/MyDashboard/MyDashboard";
+import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import AdminRoutes from "./AdminRoutes";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,12 +24,12 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("https://awesome-blog-steel.vercel.app/blogs"),
+        loader: () => fetch("http://localhost:5000/blogs"),
       },
       {
         path: "/all blogs",
         element: <AllBlogs></AllBlogs>,
-        // loader: () => fetch("https://awesome-blog-steel.vercel.app/blogs"),
+        
       },
       {
         path: "/register",
@@ -46,7 +49,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/add blogs",
-        element: <AddBlogs></AddBlogs>,
+        element: <AdminRoutes><AddBlogs></AddBlogs></AdminRoutes>,
       },
       {
         path: "/details/:id",
@@ -55,16 +58,30 @@ const router = createBrowserRouter([
           <Details></Details>
         </PrivetRoute>,   
         loader: ({ params }) =>
-          fetch(`https://awesome-blog-steel.vercel.app/single-blogs/${params.id}`)
+          fetch(`http://localhost:5000/single-blogs/${params.id}`)
       },
       {
         path: "/update/:id",
         element: <UpdateBlog></UpdateBlog>,
         loader: ({ params }) =>
-          fetch(`https://awesome-blog-steel.vercel.app/blog/${params.id}`),
+          fetch(`http://localhost:5000/blog/${params.id}`),
       },
     ],
   },
+  {
+    path: 'dashboard',
+    element:<Dashboard></Dashboard>,
+    children:[
+      {
+        path:'my-dashboard',
+        element: <MyDashboard></MyDashboard>
+      },
+      {
+        path: 'users',
+        element: <AdminRoutes><AllUsers></AllUsers></AdminRoutes>
+      }
+    ]
+  }
 ]);
 
 export default router;

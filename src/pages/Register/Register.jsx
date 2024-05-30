@@ -3,10 +3,13 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import SocialLogin from "../Login/SocialLogin";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Register = () => {
-     
-    const { createUser,setUser,updateUserProfile } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
+
+  const { createUser, setUser, updateUserProfile } = useContext(AuthContext);
   const [registerError, setRegisterError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
@@ -29,45 +32,50 @@ const Register = () => {
       return;
     }
     if (!/[@#$&*]/.test(password)) {
-      setRegisterError(
-        "Password should have at least one Special characters"
-      );
+      setRegisterError("Password should have at least one Special characters");
       return;
     }
     if (!/[0-9]/.test(password)) {
-      setRegisterError(
-        "Password should have at least one Number Like [0-9]"
-      );
+      setRegisterError("Password should have at least one Number Like [0-9]");
       return;
     }
 
     createUser(email, password)
       .then(() => {
-        updateUserProfile(fullName, photoURL,email)
-        .then(()=>{
-          toast.success("Successfully Registered")
-          navigate(location?.state || '/')
-         setUser(true)
-        })
-        
+        updateUserProfile(fullName, photoURL, email).then(() => {
+          const userInfo = {
+            name: fullName,
+            email: email,
+          };
+          axiosPublic.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              console.log('user added to the database')
+              toast.success("Successfully Registered");
+              navigate(location?.state || "/");
+              setUser(true);
+            }
+          });
+        });
       })
       .catch((error) => {
         setRegisterError(error.message);
       });
   };
 
-
   return (
     <div>
-    <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 dark:bg-gray-50 dark:text-gray-800 mx-auto border border-[#1E677C] shadow bg-[#E6E7D4]">
+      <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 dark:bg-gray-50 dark:text-gray-800 mx-auto border border-[#1E677C] shadow bg-[#E6E7D4]">
         <div className="hero-content flex-col">
           <div className="card shrink-0 w-full max-w-sm">
-          <div className="mb-8 text-center">
-          <h1 className="my-3 text-4xl font-black">Sign Up</h1>
-          <p className="text-sm dark:text-gray-600">
-            Sign Up to Register your account
-          </p>
-        </div>
+            <div className="mb-8 text-center">
+              <h1 className="my-3 text-4xl font-black">Sign Up</h1>
+              <p className="text-sm dark:text-gray-600">
+                Sign Up to Register your account
+              </p>
+            </div>
+            <div>
+            <SocialLogin></SocialLogin>
+            </div>
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="form-control">
                 <label className="label">
@@ -129,11 +137,9 @@ const Register = () => {
                 )}
               </div>
               <div className="form-control mt-6">
-                
-                  <button className="btn bg-[#1E677C] text-white font-semibold font-lato w-full">
-                    Register
-                  </button>
-                
+                <button className="btn bg-[#1E677C] text-white font-semibold font-lato w-full">
+                  Register
+                </button>
               </div>
               <div className="text-center">
                 <p className="font-lato">
@@ -152,15 +158,7 @@ const Register = () => {
             )}
           </div>
         </div>
-       
       </div>
-
-
-
-
-
-
-
 
       {/* <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 dark:bg-gray-50 dark:text-gray-800 mx-auto border border-[#1E677C] shadow bg-[#E6E7D4]">
         <div className="mb-8 text-center">

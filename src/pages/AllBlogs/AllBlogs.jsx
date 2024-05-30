@@ -12,7 +12,7 @@ const AllBlogs = () => {
   const [currentPage, setCurrentPage] = useState(1)
   useEffect(() => {
     const getData = async () => {
-      const { data } = await axios(`https://awesome-blog-steel.vercel.app/all-blogs?page=${currentPage}&filter=${filter}&search=${search}`
+      const { data } = await axios(`http://localhost:5000/all-blogs?page=${currentPage}&filter=${filter}&search=${search}`
       )
       setAllBlog(data)
     }
@@ -21,7 +21,7 @@ const AllBlogs = () => {
 
   useEffect(() => {
     const getCount = async () => {
-      const { data } = await axios(`https://awesome-blog-steel.vercel.app/blog-count?filter=${filter}&search=${search}`
+      const { data } = await axios(`http://localhost:5000/blog-count?filter=${filter}&search=${search}`
       )
 
       setCount(data.count)

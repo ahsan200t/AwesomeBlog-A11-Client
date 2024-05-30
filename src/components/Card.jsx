@@ -5,7 +5,7 @@ import { AuthContext } from "../provider/AuthProvider";
 
 const Card = ({singleComment}) => {
     const {user}=useContext(AuthContext)
-    const {photo,name,comment}=singleComment;
+    const {photo,comment}=singleComment;
     console.log(singleComment)
     return (
         <div>

@@ -7,7 +7,7 @@ const FeaturedCard = () => {
   const getData = async () => {
     try {
       const response = await axios.get(
-        " http://localhost:5000/featured-blogs"
+        "http://localhost:5000/featured-blogs"
        );
        setFeaturedBlog(response.data)
     } catch (error) {

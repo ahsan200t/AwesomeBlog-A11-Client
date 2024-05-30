@@ -85,6 +85,23 @@ const Navbar = () => {
           </NavLink>
         </li>
       )}
+      {user && (
+        <li>
+          <NavLink
+            to="/dashboard/my-dashboard"
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "pending"
+                : isActive
+                ? "text-[#1E677C] border border-[#C57F23] font-bold font-lato bg-gray-300"
+                : "font-semibold"
+            }
+          >
+           MY DASHBOARD
+
+          </NavLink>
+        </li>
+      )}
 
       {!user && (
         <li>

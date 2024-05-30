@@ -4,7 +4,7 @@ import Card from "./Card";
 const CommentsCard = () => {
   const [comments, setComments] = useState([]);
   useEffect(() => {
-    fetch("https://awesome-blog-steel.vercel.app/comments/")
+    fetch("http://localhost:5000/comments/")
       .then((res) => res.json())
       .then((data) => setComments(data));
   }, []);

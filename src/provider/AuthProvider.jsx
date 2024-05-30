@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
 import {
-  GithubAuthProvider,
+  
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
@@ -64,7 +64,7 @@ const AuthProvider = ({ children }) => {
 
   const logOut = async() => {
     setLoading(true)
-   const {data}= await axios("https://awesome-blog-steel.vercel.app/logout", {withCredentials:true})
+   const {data}= await axios("http://localhost:5000/logout", {withCredentials:true})
    console.log(data)
    setUser(false)
     return signOut(auth);
